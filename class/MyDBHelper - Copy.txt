@@ -1,0 +1,143 @@
+package com.example.assign_02;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class MyDBHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "StudentDb";
+
+    private static final int DATABASE_VERSION = 1;
+
+    private static final String TABLE_STUDENT = "students";
+
+    private static final String SPID = "spId";
+    private static final String STUDNAME = "StudName";
+    private static final String STUDRNO = "StudRno";
+    private static final String MARKS1 = "mark1";
+    private static final String MARKS2 = "mark2";
+    private static final String MARKS3 = "mark3";
+    private static final String TOTAL = "total";
+    private static final String ENTRYDATETIME = "entry_time";
+
+    public MyDBHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String sql = "CREATE TABLE " + TABLE_STUDENT + "("
+                + SPID + " INTEGER PRIMARY KEY,"
+                + STUDRNO + " INTEGER,"
+                + STUDNAME + " TEXT,"
+                + MARKS1 + " INTEGER,"
+                + MARKS2 + " INTEGER,"
+                + MARKS3 + " INTEGER,"
+                + TOTAL + " INTEGER,"
+                + ENTRYDATETIME + " DATE" + ")";
+        sqLiteDatabase.execSQL(sql);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENT);
+        onCreate(db);
+    }
+
+    public void addStudent(int RollNo,String StudentName, int m1, int m2, int m3)
+    {
+        int marks1,marks2,marks3,totalmarks;
+        totalmarks = m1 + m2+ m3 ;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues vakues = new ContentValues();
+        vakues.put(STUDNAME,StudentName);
+        vakues.put(STUDRNO,RollNo);
+        vakues.put(MARKS1,m1);
+        vakues.put(MARKS2,m2);
+        vakues.put(MARKS3,m3);
+        vakues.put(TOTAL,totalmarks);
+        vakues.put(ENTRYDATETIME,new Date().getDate());
+
+        db.insert(TABLE_STUDENT,null,vakues);
+        db.close();
+
+    }
+
+
+    ArrayList<Student> getStudents()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_STUDENT;
+        ArrayList<Student> studentList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Student stud = new Student();
+                stud.setStudentId(cursor.getString(0));
+                stud.setStudRno(cursor.getString(1));
+                stud.setStudName(cursor.getString(2));
+                stud.setMarks1(cursor.getString(3));
+                stud.setMarks2(cursor.getString(4));
+                stud.setMarks3(cursor.getString(5));
+                stud.setTotal(cursor.getString(6));
+               // stud.setEntrydatetime(cursor.getString(7));
+                // Adding contact to list
+                studentList.add(stud);
+            } while (cursor.moveToNext());
+        }
+        return  studentList;
+    }
+
+
+
+    public void deleteContact(Student Student) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_STUDENT, SPID + " = ?",
+                new String[]{String.valueOf(Student.getStudentId())});
+        db.close();
+    }
+
+    public Student getStudent(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_STUDENT,new String[]{SPID,STUDNAME,STUDRNO,MARKS1,MARKS2,MARKS3,TOTAL,ENTRYDATETIME},SPID + "=?",
+                new String[]{String.valueOf(id)},null,null,null,null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Student student =new Student(String.valueOf(cursor.getInt(0)),
+                                 cursor.getString(1),
+                                     String.valueOf(cursor.getInt(2)),
+                                             String.valueOf(cursor.getInt(3)),
+                                                     String.valueOf(cursor.getInt(4)),
+                                                             String.valueOf(cursor.getInt(5)),
+                                                                     String.valueOf(cursor.getInt(6))
+                                                                             );
+            return  student;
+    }
+
+   public void  updateStudent(Student student)
+   {
+
+       SQLiteDatabase db = this.getWritableDatabase();
+       int total = Integer.parseInt(student.getMarks1()) +Integer.parseInt(student.getMarks2())  + Integer.parseInt(student.getMarks3());
+        ContentValues values = new ContentValues();
+        values.put(STUDRNO,student.getStudRno());
+        values.put(STUDNAME,student.getStudName());
+        values.put(MARKS1,student.getMarks1());
+        values.put(MARKS2,student.getMarks2());
+        values.put(MARKS3,student.getMarks3());
+        values.put(TOTAL,total);
+        db.update(TABLE_STUDENT,values,STUDRNO + " = ?",new String[]{String.valueOf(student.getStudRno())});
+
+   }
+}

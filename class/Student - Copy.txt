@@ -1,0 +1,93 @@
+package com.example.assign_02;
+
+import java.util.Date;
+
+public class Student
+{
+    String StudentId, StudName, StudRno, Marks1, Marks2, Marks3, Total;
+    Date Entrydatetime;
+
+    public Student(String studentId, String studName, String studRno, String marks1, String marks2, String marks3, String total) {
+        StudentId = studentId;
+        StudName = studName;
+        StudRno = studRno;
+        Marks1 = marks1;
+        Marks2 = marks2;
+        Marks3 = marks3;
+        Total = total;
+    }
+
+    public String getStudentId() {
+        return StudentId;
+    }
+
+    public void setStudentId(String studentId) {
+        StudentId = studentId;
+    }
+
+    public String getStudName() {
+        return StudName;
+    }
+
+    public void setStudName(String studName) {
+        StudName = studName;
+    }
+
+    public String getStudRno() {
+        return StudRno;
+    }
+
+    public void setStudRno(String studRno) {
+        StudRno = studRno;
+    }
+
+    public String getMarks1() {
+        return Marks1;
+    }
+
+    public void setMarks1(String marks1) {
+        Marks1 = marks1;
+    }
+
+    public String getMarks2() {
+        return Marks2;
+    }
+
+    public void setMarks2(String marks2) {
+        Marks2 = marks2;
+    }
+
+    public String getMarks3() {
+        return Marks3;
+    }
+
+    public void setMarks3(String marks3) {
+        Marks3 = marks3;
+    }
+
+    public String getTotal() {
+        return Total;
+    }
+
+    public void setTotal(String total) {
+        Total = total;
+    }
+
+    public Date getEntrydatetime() {
+        return Entrydatetime;
+    }
+
+    public void setEntrydatetime(Date entrydatetime) {
+        Entrydatetime = entrydatetime;
+    }
+
+    public Student() {
+    }
+
+    public Student(String studentId, String studName, String studRno, String total) {
+        StudentId = studentId;
+        StudName = studName;
+        StudRno = studRno;
+        Total = total;
+    }
+}

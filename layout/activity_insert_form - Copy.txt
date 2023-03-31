@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".insertForm">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INSERT STUDENT"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="7dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:id="@+id/tv_insert_Student"
+
+        android:layout_margin="55sp"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/tv_insert_Student"
+        android:layout_marginLeft="25sp"
+
+        android:id="@+id/rlayput_rno_name"
+       >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Roll No"
+            android:layout_marginLeft="20sp"
+            android:paddingTop="12sp"
+            android:id="@+id/tv_lblRno"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Student Rno"
+            android:layout_toRightOf="@+id/tv_lblRno"
+            android:layout_marginLeft="20sp"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:id="@+id/ev_Rno"
+            ></EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_marginLeft="22sp"
+            android:paddingTop="18sp"
+            android:id="@+id/tv_lblSName"
+            android:layout_below="@id/tv_lblRno"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Student Name"
+            android:layout_toRightOf="@+id/tv_lblRno"
+            android:layout_marginLeft="20sp"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:layout_below="@id/ev_Rno"
+            android:id="@+id/ev_Name"
+            ></EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EJB"
+            android:layout_marginLeft="22sp"
+            android:paddingTop="24sp"
+            android:id="@+id/tv_lblMarks1"
+            android:layout_below="@id/tv_lblSName"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Subject1 Marks"
+            android:layout_toRightOf="@+id/tv_lblRno"
+            android:layout_marginLeft="20sp"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:layout_below="@id/ev_Name"
+            android:id="@+id/ev_marks1"
+            ></EditText>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JWD"
+            android:layout_marginLeft="22sp"
+            android:paddingTop="22sp"
+            android:id="@+id/tv_lblMarks2"
+            android:layout_below="@id/tv_lblMarks1"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Subject2 Marks"
+            android:layout_toRightOf="@+id/tv_lblRno"
+            android:layout_marginLeft="20sp"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:layout_below="@id/ev_marks1"
+            android:id="@+id/ev_marks2"
+            ></EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JAVA"
+            android:layout_marginLeft="22sp"
+            android:paddingTop="22sp"
+            android:id="@+id/tv_lblMarks3"
+            android:layout_below="@id/tv_lblMarks2"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Subject3 Marks"
+            android:layout_toRightOf="@+id/tv_lblRno"
+            android:layout_marginLeft="20sp"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:layout_below="@id/ev_marks2"
+            android:id="@+id/ev_marks3"
+            ></EditText>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_addStudent"
+            android:text="Submit"
+            android:textSize="22sp"
+            android:layout_below="@id/ev_marks3"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="24sp"
+            android:backgroundTint="#009688"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
